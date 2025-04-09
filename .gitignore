@@ -1,15 +1,6 @@
 target/
 .idea/
 
-### IntelliJ IDEA ###
-.idea/modules.xml
-.idea/jarRepositories.xml
-.idea/compiler.xml
-.idea/libraries/
-*.iws
-*.iml
-*.ipr
-
 ### VS Code ###
 .vscode/
 
