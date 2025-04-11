@@ -3,7 +3,7 @@
 ## :question: What is this Repository about?
 
 - This repo contains example code to handle JSON test data in automation testing
-  using [Google Gson](https://github.com/alibaba/easyexcel) library.
+  using [Google Gson](https://github.com/google/gson) library.
 - It contains a demo example to pass test data to registration workflow on [PracticeSoftwareTesting.com]
   (https://practicesoftwaretesting.com/auth/register)
 - Selenium WebDriver is used for Web automation testing and TestNG is used as Test runner.
