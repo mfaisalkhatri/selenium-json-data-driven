@@ -8,6 +8,10 @@
   (https://practicesoftwaretesting.com/auth/register)
 - Selenium WebDriver is used for Web automation testing and TestNG is used as Test runner.
 
+## :movie_camera: Tutorial Video
+
+[![Watch the video](https://img.youtube.com/vi/9a7WOl_VUog/hqdefault.jpg)](https://youtu.be/9a7WOl_VUog?si=NiApp49KBcz9Lqdu)
+
 ## Blog Link
 
 - [How to Read JSON Files in Java Using the Google Gson Library](https://dzone.com/articles/how-to-read-json-files-in-java-using-google-gson-l)
