@@ -1,6 +1,10 @@
 package io.github.mfaisalkhatri.pages;
 
+import java.text.DateFormat;
 import java.time.Duration;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 
 import io.github.mfaisalkhatri.data.RegistrationData;
 import org.openqa.selenium.By;
@@ -27,7 +31,12 @@ public class RegistrationPage {
         firstNameField ().sendKeys (registrationData.getFirstName ());
         lastNameField ().clear ();
         lastNameField ().sendKeys (registrationData.getLastName ());
-        dobField ().sendKeys (registrationData.getDob ());
+
+        Locale defaultLocale = Locale.getDefault ();
+        DateFormat dateFormat = DateFormat.getDateInstance (DateFormat.SHORT, defaultLocale);
+        String formattedDate = dateFormat.format (registrationData.getDob ());
+        dobField ().sendKeys (formattedDate);
+
         streetField ().clear ();
         streetField ().sendKeys (registrationData.getStreet ());
         postalCodeField ().clear ();
