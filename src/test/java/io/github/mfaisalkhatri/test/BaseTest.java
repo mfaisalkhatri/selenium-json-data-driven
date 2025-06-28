@@ -20,11 +20,10 @@ public class BaseTest implements WebDriverProvider {
 
     @BeforeClass
     public void setup () {
-        //ChromeOptions chromeOptions = new ChromeOptions ();
-        //chromeOptions.addArguments ("--headless=new", "--no-sandbox", "--window-size=1920,1080");
+        ChromeOptions chromeOptions = new ChromeOptions ();
+        chromeOptions.addArguments ("--headless=new", "--no-sandbox", "--window-size=1920,1080");
 
-       // this.driver = new ChromeDriver (chromeOptions);
-        this.driver = new ChromeDriver ();
+        this.driver = new ChromeDriver (chromeOptions);
         this.driver.manage ()
             .timeouts ()
             .implicitlyWait (Duration.ofSeconds (30));
