@@ -12,7 +12,7 @@ public class HomePage {
         this.driver=driver;
     }
 
-    public LoginPage navigateToRegistrationPage() {
+    public LoginPage navigateToLoginPage() {
         signInLink ().click ();
         return new LoginPage (driver);
 
