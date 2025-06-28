@@ -23,8 +23,10 @@ public class JsonDataProviderTest extends BaseTest {
     public void testRegistrationPasswordAlert (final RegistrationData registrationData) {
         final RegistrationPage registrationPage = new RegistrationPage (this.driver);
         this.driver.get ("https://practicesoftwaretesting.com/auth/register");
+        System.out.println ("Navigate to the url success!");
 
         assertEquals (registrationPage.pageHeader (), "Customer registration");
+        System.out.println ("verified page header!");
         registrationPage.fillRegistrationForm (registrationData);
 
         assertEquals (registrationPage.passwordAlertMessage (),
