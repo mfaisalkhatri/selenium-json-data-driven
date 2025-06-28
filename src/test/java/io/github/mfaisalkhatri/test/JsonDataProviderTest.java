@@ -23,7 +23,7 @@ public class JsonDataProviderTest extends BaseTest {
 
     @Test (dataProvider = "getValidRegistrationData")
     public void testRegistrationPasswordAlert (final RegistrationData registrationData) {
-        this.driver.get ("https://practicesoftwaretesting.com/");
+        this.driver.get ("http://localhost:4200/");
 
         HomePage homePage = new HomePage (driver);
         LoginPage loginPage = homePage.navigateToLoginPage ();
