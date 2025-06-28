@@ -46,6 +46,16 @@ jobs:
         distribution: 'adopt'
         cache: maven
 
+    - name: Checkout Practice Software Testing repo
+      uses: actions/checkout@v4
+      with:
+        repository: testsmith-io/practice-software-testing/
+        path: practice-repo
+
+    - name: Start Practice Software Testing with Docker Compose
+      working-directory: practice-repo
+      run: docker compose up -d
+
     - name: Install Chrome
       uses: browser-actions/setup-chrome@latest
 

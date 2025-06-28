@@ -1,5 +1,6 @@
 target/
 .idea/
+/screenshots/
 
 ### VS Code ###
 .vscode/
