@@ -22,9 +22,6 @@ public class BaseTest {
 
         this.driver = new ChromeDriver (chromeOptions);
         this.driver.manage ()
-            .window ()
-            .maximize ();
-        this.driver.manage ()
             .timeouts ()
             .implicitlyWait (Duration.ofSeconds (30));
     }
