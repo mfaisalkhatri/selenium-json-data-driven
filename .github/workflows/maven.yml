@@ -52,6 +52,13 @@ jobs:
     - name: Build Project and run tests
       run: mvn clean install
 
+    - name: Upload screenshots
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-screenshots
+        path: screenshots
+
     - name: Test Report
       uses: dorny/test-reporter@v2
       if: success() || failure()
