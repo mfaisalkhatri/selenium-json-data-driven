@@ -49,7 +49,7 @@ jobs:
     - name: Checkout Practice Software Testing repo
       uses: actions/checkout@v4
       with:
-        repository: testsmith-io/practice-software-testing/
+        repository: testsmith-io/practice-software-testing
         path: practice-repo
 
     - name: Start Practice Software Testing with Docker Compose
