@@ -20,6 +20,8 @@
         <maven.compiler.version>3.13.0</maven.compiler.version>
         <surefire-version>3.5.0</surefire-version>
         <maven.source.encoding>UTF-8</maven.source.encoding>
+        <suite-xml>testng.xml</suite-xml>
+        <argLine>-Dfile.encoding=UTF-8 -Xdebug -Xnoagent</argLine>
     </properties>
     <dependencies>
         <dependency>
@@ -76,6 +78,10 @@
                             <value>false</value>
                         </property>
                     </properties>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>${suite-xml}</suiteXmlFile>
+                    </suiteXmlFiles>
+                    <argLine>${argLine}</argLine>
                 </configuration>
             </plugin>
         </plugins>
