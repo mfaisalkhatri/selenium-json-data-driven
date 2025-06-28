@@ -4,6 +4,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -13,6 +14,11 @@ public class BaseTest {
 
     @BeforeClass
     public void setup () {
+        ChromeOptions chromeOptions = new ChromeOptions ();
+        chromeOptions.addArguments ("--headless=new");
+        chromeOptions.addArguments ("disable-gpu");
+        chromeOptions.addArguments("--disable-dev-shm-usage");
+
         this.driver = new ChromeDriver ();
         this.driver.manage ()
             .window ()
