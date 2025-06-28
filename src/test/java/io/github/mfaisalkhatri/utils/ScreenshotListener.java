@@ -28,7 +28,7 @@ public class ScreenshotListener implements ITestListener {
             String filename = timestamp + ".png";
             try {
                 Files.createDirectories (Paths.get ("screenshots"));
-                Files.copy (screenshot.toPath (), Paths.get ("screenshots", testName, filename));
+                Files.copy (screenshot.toPath (), Paths.get ("screenshots", testName+"_"+filename));
             } catch (IOException e) {
                 throw new RuntimeException (e);
             }
