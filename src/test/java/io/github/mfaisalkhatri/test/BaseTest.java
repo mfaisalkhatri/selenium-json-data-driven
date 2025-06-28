@@ -22,6 +22,7 @@ public class BaseTest implements WebDriverProvider {
     public void setup () {
         ChromeOptions chromeOptions = new ChromeOptions ();
         chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
+        chromeOptions.setExperimentalOption("useAutomationExtension", false);
         chromeOptions.addArguments ("--headless=new", "--no-sandbox", "--window-size=1920,1080");
 
         this.driver = new ChromeDriver (chromeOptions);
