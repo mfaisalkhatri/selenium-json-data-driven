@@ -19,7 +19,7 @@ public class BaseTest {
         chromeOptions.addArguments ("disable-gpu");
         chromeOptions.addArguments("--disable-dev-shm-usage");
 
-        this.driver = new ChromeDriver ();
+        this.driver = new ChromeDriver (chromeOptions);
         this.driver.manage ()
             .window ()
             .maximize ();
