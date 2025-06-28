@@ -18,6 +18,7 @@ public class BaseTest {
         chromeOptions.addArguments ("--headless=new");
         chromeOptions.addArguments ("disable-gpu");
         chromeOptions.addArguments("--disable-dev-shm-usage");
+        chromeOptions.addArguments ("--window-size=1280,1024");
 
         this.driver = new ChromeDriver (chromeOptions);
         this.driver.manage ()
