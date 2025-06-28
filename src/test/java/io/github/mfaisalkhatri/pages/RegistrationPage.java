@@ -31,12 +31,7 @@ public class RegistrationPage {
         firstNameField ().sendKeys (registrationData.getFirstName ());
         lastNameField ().clear ();
         lastNameField ().sendKeys (registrationData.getLastName ());
-
-        Locale defaultLocale = Locale.getDefault ();
-        DateFormat dateFormat = DateFormat.getDateInstance (DateFormat.SHORT, defaultLocale);
-        String formattedDate = dateFormat.format (registrationData.getDob ());
-        dobField ().sendKeys (formattedDate);
-
+        dobField ().sendKeys (registrationData.getDob ());
         streetField ().clear ();
         streetField ().sendKeys (registrationData.getStreet ());
         postalCodeField ().clear ();
