@@ -1,10 +1,6 @@
 package io.github.mfaisalkhatri.pages;
 
-import java.text.DateFormat;
 import java.time.Duration;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Locale;
 
 import io.github.mfaisalkhatri.data.RegistrationData;
 import org.openqa.selenium.By;

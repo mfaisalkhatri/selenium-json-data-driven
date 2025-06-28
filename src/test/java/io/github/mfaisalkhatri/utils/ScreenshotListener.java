@@ -20,7 +20,6 @@ public class ScreenshotListener implements ITestListener {
         WebDriver driver = ((WebDriverProvider) testClass).getDriver ();
         String timestamp = new SimpleDateFormat ("yyyyMMdd_HHmmss_SSS").format (new Date ());
 
-
         if (driver != null) {
             String testName = result.getMethod ()
                 .getMethodName ();
@@ -28,7 +27,7 @@ public class ScreenshotListener implements ITestListener {
             String filename = timestamp + ".png";
             try {
                 Files.createDirectories (Paths.get ("screenshots"));
-                Files.copy (screenshot.toPath (), Paths.get ("screenshots", testName+"_"+filename));
+                Files.copy (screenshot.toPath (), Paths.get ("screenshots", testName + "_" + filename));
             } catch (IOException e) {
                 throw new RuntimeException (e);
             }
