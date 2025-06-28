@@ -39,6 +39,16 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
+    - name: Install Java and Maven
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'adopt'
+        cache: maven
+
+    - name: Install Chrome
+      uses: browser-actions/setup-chrome@latest
+
     - name: Build Project and run tests
       run: mvn clean install
 
