@@ -3,8 +3,6 @@ package io.github.mfaisalkhatri.pages;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-import java.util.Locale;
 
 import io.github.mfaisalkhatri.data.RegistrationData;
 import org.openqa.selenium.By;
