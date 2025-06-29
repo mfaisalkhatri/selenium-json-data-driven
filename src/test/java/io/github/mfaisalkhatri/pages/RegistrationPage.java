@@ -1,17 +1,27 @@
 package io.github.mfaisalkhatri.pages;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import io.github.mfaisalkhatri.data.RegistrationData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RegistrationPage {
 
     private final WebDriver driver;
+    private final WebDriverWait wait;
+
 
     public RegistrationPage (final WebDriver driver) {
+
         this.driver = driver;
+        this.wait = new WebDriverWait (driver, Duration.ofSeconds (30));
     }
 
     public void fillRegistrationForm (final RegistrationData registrationData) {
@@ -19,7 +29,7 @@ public class RegistrationPage {
         firstNameField ().sendKeys (registrationData.getFirstName ());
         lastNameField ().clear ();
         lastNameField ().sendKeys (registrationData.getLastName ());
-        dobField ().sendKeys (registrationData.getDob ());
+        dobField ().sendKeys (dateOfBirth (registrationData.getDob ()));
         streetField ().clear ();
         streetField ().sendKeys (registrationData.getStreet ());
         postalCodeField ().clear ();
@@ -39,12 +49,12 @@ public class RegistrationPage {
     }
 
     public String pageHeader () {
-        return this.driver.findElement (By.cssSelector ("app-register h3"))
+        return wait.until (ExpectedConditions.visibilityOfElementLocated (By.cssSelector ("app-register h3")))
             .getText ();
     }
 
     public String passwordAlertMessage () {
-        return this.driver.findElement (By.cssSelector (".alert-danger div"))
+        return wait.until (ExpectedConditions.visibilityOfElementLocated (By.cssSelector (".alert-danger div")))
             .getText ();
     }
 
@@ -98,5 +108,14 @@ public class RegistrationPage {
 
     private WebElement streetField () {
         return this.driver.findElement (By.id ("street"));
+    }
+
+    private String dateOfBirth (String jsonDate) {
+
+        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern ("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse (jsonDate, inputFormat);
+
+        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern ("MM/dd/yyyy");
+        return date.format (outputFormat);
     }
 }

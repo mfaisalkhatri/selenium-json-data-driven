@@ -2,21 +2,28 @@ package io.github.mfaisalkhatri.test;
 
 import java.time.Duration;
 
+import io.github.mfaisalkhatri.utils.WebDriverProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
-public class BaseTest {
+public class BaseTest implements WebDriverProvider {
 
     protected  WebDriver driver;
 
+    @Override
+    public WebDriver getDriver () {
+        return driver;
+    }
+
     @BeforeClass
     public void setup () {
-        this.driver = new ChromeDriver ();
-        this.driver.manage ()
-            .window ()
-            .maximize ();
+        ChromeOptions chromeOptions = new ChromeOptions ();
+        chromeOptions.addArguments ("--headless=new","--no-sandbox", "--window-size=1920,1080");
+
+        this.driver = new ChromeDriver (chromeOptions);
         this.driver.manage ()
             .timeouts ()
             .implicitlyWait (Duration.ofSeconds (30));
@@ -24,6 +31,8 @@ public class BaseTest {
 
     @AfterClass
     public void tearDown () {
-        this.driver.quit ();
+        if (driver != null) {
+            this.driver.quit ();
+        }
     }
 }
