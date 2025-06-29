@@ -1,6 +1,10 @@
 package io.github.mfaisalkhatri.pages;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.util.Locale;
 
 import io.github.mfaisalkhatri.data.RegistrationData;
 import org.openqa.selenium.By;
@@ -27,7 +31,7 @@ public class RegistrationPage {
         firstNameField ().sendKeys (registrationData.getFirstName ());
         lastNameField ().clear ();
         lastNameField ().sendKeys (registrationData.getLastName ());
-        dobField ().sendKeys (registrationData.getDob ());
+        dobField ().sendKeys (dateOfBirth (registrationData.getDob ()));
         streetField ().clear ();
         streetField ().sendKeys (registrationData.getStreet ());
         postalCodeField ().clear ();
@@ -106,5 +110,14 @@ public class RegistrationPage {
 
     private WebElement streetField () {
         return this.driver.findElement (By.id ("street"));
+    }
+
+    private String dateOfBirth (String jsonDate) {
+
+        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern ("dd/MM/yyyy");
+        LocalDate date = LocalDate.parse (jsonDate, inputFormat);
+
+        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern ("MM/dd/yyyy");
+        return date.format (outputFormat);
     }
 }
