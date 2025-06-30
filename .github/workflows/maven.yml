@@ -61,6 +61,7 @@ jobs:
       shell: bash
 
     - name: Create and Seed Database
+      working-directory: practice-repo
       run: |
         docker compose exec laravel-api php artisan migrate:fresh --seed
 
