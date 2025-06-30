@@ -56,6 +56,10 @@ jobs:
       working-directory: practice-repo
       run: docker compose up -d
 
+    - name: Create DB Schema and seed the database
+      working-directory: practice-repo
+      run: docker-compose exec laravel-api php artisan migrate:fresh --seed
+
     - name: Install Chrome
       uses: browser-actions/setup-chrome@latest
 
