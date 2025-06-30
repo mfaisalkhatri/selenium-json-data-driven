@@ -54,9 +54,15 @@ jobs:
 
     - name: Start Practice Software Testing with Docker Compose
       working-directory: practice-repo
+      run: docker compose -f docker-compose.yml up -d
+
+    - name: Sleep for 60 seconds
+      run: sleep 60s
+      shell: bash
+
+    - name: Create and Seed Database
       run: |
-          docker compose up -d
-          docker compose exec laravel-api php artisan migrate:fresh --seed
+        docker compose exec laravel-api php artisan migrate:fresh --seed
 
     - name: Install Chrome
       uses: browser-actions/setup-chrome@latest
