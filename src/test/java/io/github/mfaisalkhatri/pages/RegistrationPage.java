@@ -1,13 +1,12 @@
 package io.github.mfaisalkhatri.pages;
 
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import io.github.mfaisalkhatri.data.RegistrationData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -54,8 +53,13 @@ public class RegistrationPage {
     }
 
     public String passwordAlertMessage () {
-        return wait.until (ExpectedConditions.visibilityOfElementLocated (By.cssSelector (".alert-danger div")))
-            .getText ();
+        WebElement warningMessage = wait.until (
+            ExpectedConditions.visibilityOfElementLocated (By.cssSelector (".alert-danger div")));
+        Actions actions = new Actions (driver);
+        actions.moveToElement (warningMessage)
+            .build ()
+            .perform ();
+        return warningMessage.getText ();
     }
 
     private WebElement cityField () {
