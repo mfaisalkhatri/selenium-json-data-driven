@@ -49,12 +49,8 @@ jobs:
     - name: Start Practice Software Testing ToolShop Website with Docker Compose
       run: docker compose -f docker-compose-toolshop.yml up -d
 
-    - name: Sleep for 60 seconds
-      run: sleep 60s
-      shell: bash
-
     - name: Create and Seed Database
-      run: docker compose exec -f docker-compose-toolshop.yml laravel-api php artisan migrate:fresh --seed
+      run: docker compose -f docker-compose-toolshop.yml exec laravel-api php artisan migrate:fresh --seed
 
     - name: Build Project and run tests
       run: mvn clean install
