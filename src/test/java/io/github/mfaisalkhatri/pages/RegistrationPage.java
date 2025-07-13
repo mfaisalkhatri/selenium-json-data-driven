@@ -53,9 +53,10 @@ public class RegistrationPage {
     }
 
     public String passwordAlertMessage () {
+        Actions actions = new Actions (driver);
+        actions.moveToElement (footerField ()).build ().perform ();
         WebElement warningMessage = wait.until (
             ExpectedConditions.visibilityOfElementLocated (By.cssSelector ("div.alert")));
-        Actions actions = new Actions (driver);
         actions.moveToElement (warningMessage)
             .build ()
             .perform ();
@@ -112,6 +113,10 @@ public class RegistrationPage {
 
     private WebElement streetField () {
         return this.driver.findElement (By.id ("street"));
+    }
+
+    private WebElement footerField () {
+        return this.driver.findElement (By.cssSelector ("app-footer p"));
     }
 
 }
