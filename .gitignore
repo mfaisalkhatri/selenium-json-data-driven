@@ -1,6 +1,8 @@
 target/
 .idea/
 /screenshots/
+/API
+/UI
 
 ### VS Code ###
 .vscode/

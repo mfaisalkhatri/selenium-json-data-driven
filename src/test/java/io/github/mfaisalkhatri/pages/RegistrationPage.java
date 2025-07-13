@@ -1,13 +1,12 @@
 package io.github.mfaisalkhatri.pages;
 
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import io.github.mfaisalkhatri.data.RegistrationData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -29,7 +28,7 @@ public class RegistrationPage {
         firstNameField ().sendKeys (registrationData.getFirstName ());
         lastNameField ().clear ();
         lastNameField ().sendKeys (registrationData.getLastName ());
-        dobField ().sendKeys (dateOfBirth (registrationData.getDob ()));
+        dobField ().sendKeys (registrationData.getDob ());
         streetField ().clear ();
         streetField ().sendKeys (registrationData.getStreet ());
         postalCodeField ().clear ();
@@ -54,8 +53,14 @@ public class RegistrationPage {
     }
 
     public String passwordAlertMessage () {
-        return wait.until (ExpectedConditions.visibilityOfElementLocated (By.cssSelector (".alert-danger div")))
-            .getText ();
+        Actions actions = new Actions (driver);
+        actions.moveToElement (footerField ()).build ().perform ();
+        WebElement warningMessage = wait.until (
+            ExpectedConditions.visibilityOfElementLocated (By.cssSelector ("div.alert")));
+        actions.moveToElement (warningMessage)
+            .build ()
+            .perform ();
+        return warningMessage.getText ();
     }
 
     private WebElement cityField () {
@@ -110,12 +115,8 @@ public class RegistrationPage {
         return this.driver.findElement (By.id ("street"));
     }
 
-    private String dateOfBirth (String jsonDate) {
-
-        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern ("dd/MM/yyyy");
-        LocalDate date = LocalDate.parse (jsonDate, inputFormat);
-
-        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern ("MM/dd/yyyy");
-        return date.format (outputFormat);
+    private WebElement footerField () {
+        return this.driver.findElement (By.cssSelector ("app-footer p"));
     }
+
 }
