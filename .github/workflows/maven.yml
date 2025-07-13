@@ -49,8 +49,8 @@ jobs:
     - name: Start Practice Software Testing ToolShop Website with Docker Compose
       run: docker compose -f docker-compose-toolshop.yml up -d
 
-    - name: Sleep for 60 seconds
-      run: sleep 60s
+    - name: Sleep for 90 seconds
+      run: sleep 90s
       shell: bash
 
     - name: Create and Seed Database
