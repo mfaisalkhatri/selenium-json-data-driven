@@ -54,9 +54,7 @@ jobs:
       shell: bash
 
     - name: Create and Seed Database
-      working-directory: practice-repo
-      run: |
-        docker compose exec -f docker-compose-toolshop.yml laravel-api php artisan migrate:fresh --seed
+      run: docker compose exec -f docker-compose-toolshop.yml laravel-api php artisan migrate:fresh --seed
 
     - name: Build Project and run tests
       run: mvn clean install
