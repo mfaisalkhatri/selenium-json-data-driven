@@ -54,7 +54,7 @@ public class RegistrationPage {
 
     public String passwordAlertMessage () {
         WebElement warningMessage = wait.until (
-            ExpectedConditions.visibilityOfElementLocated (By.cssSelector (".alert-danger div")));
+            ExpectedConditions.visibilityOfElementLocated (By.cssSelector ("div.alert")));
         Actions actions = new Actions (driver);
         actions.moveToElement (warningMessage)
             .build ()
