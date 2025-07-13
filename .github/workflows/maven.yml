@@ -46,15 +46,8 @@ jobs:
         distribution: 'adopt'
         cache: maven
 
-    - name: Checkout Practice Software Testing repo
-      uses: actions/checkout@v4
-      with:
-        repository: testsmith-io/practice-software-testing
-        path: practice-repo
-
-    - name: Start Practice Software Testing with Docker Compose
-      working-directory: practice-repo
-      run: docker compose -f docker-compose.yml up -d
+    - name: Start Practice Software Testing ToolShop Website with Docker Compose
+      run: docker compose -f docker-compose-toolshop.yml up -d
 
     - name: Sleep for 60 seconds
       run: sleep 60s
@@ -63,10 +56,7 @@ jobs:
     - name: Create and Seed Database
       working-directory: practice-repo
       run: |
-        docker compose exec laravel-api php artisan migrate:fresh --seed
-
-    - name: Install Chrome
-      uses: browser-actions/setup-chrome@latest
+        docker compose exec -f docker-compose-toolshop.yml laravel-api php artisan migrate:fresh --seed
 
     - name: Build Project and run tests
       run: mvn clean install
@@ -77,6 +67,9 @@ jobs:
       with:
         name: test-screenshots
         path: screenshots
+
+    - name: Stop Practice Software Testing ToolShop Website
+      run: docker compose -f docker-compose-toolshop.yml down --remove-orphans
 
     - name: Test Report
       uses: dorny/test-reporter@v2

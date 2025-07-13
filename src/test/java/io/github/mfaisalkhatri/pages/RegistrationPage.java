@@ -29,7 +29,7 @@ public class RegistrationPage {
         firstNameField ().sendKeys (registrationData.getFirstName ());
         lastNameField ().clear ();
         lastNameField ().sendKeys (registrationData.getLastName ());
-        dobField ().sendKeys (dateOfBirth (registrationData.getDob ()));
+        dobField ().sendKeys (registrationData.getDob ());
         streetField ().clear ();
         streetField ().sendKeys (registrationData.getStreet ());
         postalCodeField ().clear ();
@@ -110,12 +110,4 @@ public class RegistrationPage {
         return this.driver.findElement (By.id ("street"));
     }
 
-    private String dateOfBirth (String jsonDate) {
-
-        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern ("dd/MM/yyyy");
-        LocalDate date = LocalDate.parse (jsonDate, inputFormat);
-
-        DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern ("MM/dd/yyyy");
-        return date.format (outputFormat);
-    }
 }
