@@ -17,7 +17,7 @@
         <gson.version>2.13.2</gson.version>
         <lombok.version>1.18.42</lombok.version>
         <java.release.version>17</java.release.version>
-        <maven.compiler.version>3.14.1</maven.compiler.version>
+        <maven.compiler.version>3.15.0</maven.compiler.version>
         <surefire-version>3.5.4</surefire-version>
         <maven.source.encoding>UTF-8</maven.source.encoding>
         <suite-xml>testng.xml</suite-xml>
