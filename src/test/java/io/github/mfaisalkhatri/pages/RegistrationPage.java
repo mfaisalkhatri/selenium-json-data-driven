@@ -29,15 +29,17 @@ public class RegistrationPage {
         lastNameField ().clear ();
         lastNameField ().sendKeys (registrationData.getLastName ());
         dobField ().sendKeys (registrationData.getDob ());
-        streetField ().clear ();
-        streetField ().sendKeys (registrationData.getStreet ());
+        selectCountryVisibleText (registrationData.getCountry ());
         postalCodeField ().clear ();
         postalCodeField ().sendKeys (registrationData.getPostalCode ());
-        cityField ().clear ();
-        cityField ().sendKeys (registrationData.getCity ());
-        stateField ().clear ();
-        stateField ().sendKeys (registrationData.getState ());
-        selectCountryVisibleText (registrationData.getCountry ());
+        houseNumber().clear();
+        houseNumber().sendKeys(registrationData.getHouseNumber());
+        //streetField ().clear ();
+        //streetField ().sendKeys (registrationData.getStreet ());
+        //cityField ().clear ();
+        //cityField ().sendKeys (registrationData.getCity ());
+        //stateField ().clear ();
+        //stateField ().sendKeys (registrationData.getState ());
         phoneField ().clear ();
         phoneField ().sendKeys (registrationData.getPhone ());
         emailAddressField ().clear ();
@@ -101,6 +103,10 @@ public class RegistrationPage {
 
     private WebElement registerButton () {
         return this.driver.findElement (By.cssSelector (".btnSubmit"));
+    }
+
+    private WebElement houseNumber () {
+        return this.driver.findElement(By.id("house_number"));
     }
 
     private void selectCountryVisibleText (final String countryName) {
