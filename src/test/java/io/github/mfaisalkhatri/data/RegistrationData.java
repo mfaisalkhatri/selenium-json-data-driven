@@ -11,6 +11,7 @@ public class RegistrationData {
     private String  lastName;
     private String  dob;
     private String  street;
+    private String houseNumber;
     private String  postalCode;
     private String  city;
     private String  state;
