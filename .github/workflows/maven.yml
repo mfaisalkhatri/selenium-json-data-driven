@@ -31,19 +31,9 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-#      - name: Checkout Practice Software Testing repo
-#        uses: actions/checkout@v7
-#        with:
-#          repository: testsmith-io/practice-software-testing
-#          path: practice-repo
-
       - name: Start Practice Software Testing with Docker Compose
-#        working-directory: practice-repo
         run: docker compose -f docker-compose-toolshop.yml up -d
 
-#      - name: Sleep for 90 seconds
-#        run: sleep 90s
-#        shell: bash
       - name: Wait for MariaDB
         run: |
           until docker compose -f docker-compose-toolshop.yml exec -T mariadb \
@@ -53,9 +43,14 @@ jobs:
           done
 
       - name: Create and Seed Database
-#        working-directory: practice-repo
         run: |
           docker compose -f docker-compose-toolshop.yml exec laravel-api php artisan migrate:fresh --seed
+      - name: Wait for application
+        run: |
+          until curl -f http://localhost:4200; do
+            echo "Waiting for application..."
+            sleep 5
+          done
 
       - name: Build Project and run tests
         run: mvn clean install
