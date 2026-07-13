@@ -31,24 +31,24 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Checkout Practice Software Testing repo
-        uses: actions/checkout@v7
-        with:
-          repository: testsmith-io/practice-software-testing
-          path: practice-repo
+#      - name: Checkout Practice Software Testing repo
+#        uses: actions/checkout@v7
+#        with:
+#          repository: testsmith-io/practice-software-testing
+#          path: practice-repo
 
       - name: Start Practice Software Testing with Docker Compose
-        working-directory: practice-repo
-        run: docker compose -f docker-compose.yml up -d
+#        working-directory: practice-repo
+        run: docker compose -f docker-compose-toolshop.yml up -d
 
       - name: Sleep for 60 seconds
         run: sleep 60s
         shell: bash
 
       - name: Create and Seed Database
-        working-directory: practice-repo
+#        working-directory: practice-repo
         run: |
-          docker compose exec laravel-api php artisan migrate:fresh --seed
+          docker compose -f docker-compose-toolshop exec laravel-api php artisan migrate:fresh --seed
 
       - name: Build Project and run tests
         run: mvn clean install
