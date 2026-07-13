@@ -41,9 +41,16 @@ jobs:
 #        working-directory: practice-repo
         run: docker compose -f docker-compose-toolshop.yml up -d
 
-      - name: Sleep for 60 seconds
-        run: sleep 60s
-        shell: bash
+#      - name: Sleep for 90 seconds
+#        run: sleep 90s
+#        shell: bash
+      - name: Wait for MariaDB
+        run: |
+          until docker compose -f docker-compose-toolshop.yml exec -T mariadb \
+            mysqladmin ping -h localhost -uroot -proot --silent; do
+            echo "Waiting for MariaDB..."
+            sleep 5
+          done
 
       - name: Create and Seed Database
 #        working-directory: practice-repo
