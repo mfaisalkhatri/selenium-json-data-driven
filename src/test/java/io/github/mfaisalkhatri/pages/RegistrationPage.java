@@ -13,9 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class RegistrationPage {
 
-    private final WebDriver driver;
+    private final WebDriver     driver;
     private final WebDriverWait wait;
-
 
     public RegistrationPage (final WebDriver driver) {
 
@@ -32,14 +31,14 @@ public class RegistrationPage {
         selectCountryVisibleText (registrationData.getCountry ());
         postalCodeField ().clear ();
         postalCodeField ().sendKeys (registrationData.getPostalCode ());
-        houseNumber().clear();
-        houseNumber().sendKeys(registrationData.getHouseNumber());
+        houseNumber ().clear ();
+        houseNumber ().sendKeys (registrationData.getHouseNumber ());
         streetField ().clear ();
         streetField ().sendKeys (registrationData.getStreet ());
-        //cityField ().clear ();
-        //cityField ().sendKeys (registrationData.getCity ());
-        //stateField ().clear ();
-        //stateField ().sendKeys (registrationData.getState ());
+        cityField ().clear ();
+        cityField ().sendKeys (registrationData.getCity ());
+        stateField ().clear ();
+        stateField ().sendKeys (registrationData.getState ());
         phoneField ().clear ();
         phoneField ().sendKeys (registrationData.getPhone ());
         emailAddressField ().clear ();
@@ -56,7 +55,9 @@ public class RegistrationPage {
 
     public String passwordAlertMessage () {
         Actions actions = new Actions (driver);
-        actions.moveToElement (footerField ()).build ().perform ();
+        actions.moveToElement (footerField ())
+            .build ()
+            .perform ();
         WebElement warningMessage = wait.until (
             ExpectedConditions.visibilityOfElementLocated (By.cssSelector ("div.alert")));
         actions.moveToElement (warningMessage)
@@ -106,7 +107,7 @@ public class RegistrationPage {
     }
 
     private WebElement houseNumber () {
-        return this.driver.findElement(By.id("house_number"));
+        return this.driver.findElement (By.id ("house_number"));
     }
 
     private void selectCountryVisibleText (final String countryName) {
