@@ -34,8 +34,8 @@ public class RegistrationPage {
         postalCodeField ().sendKeys (registrationData.getPostalCode ());
         houseNumber().clear();
         houseNumber().sendKeys(registrationData.getHouseNumber());
-        //streetField ().clear ();
-        //streetField ().sendKeys (registrationData.getStreet ());
+        streetField ().clear ();
+        streetField ().sendKeys (registrationData.getStreet ());
         //cityField ().clear ();
         //cityField ().sendKeys (registrationData.getCity ());
         //stateField ().clear ();
