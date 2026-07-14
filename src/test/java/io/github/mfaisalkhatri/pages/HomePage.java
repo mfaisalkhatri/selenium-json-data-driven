@@ -20,6 +20,12 @@ public class HomePage {
         this.wait = new WebDriverWait (driver, Duration.ofSeconds (30));
     }
 
+    public void checkPlierProduct() {
+        WebElement plier = this.wait.until
+            (ExpectedConditions.visibilityOfElementLocated (By.cssSelector ("img[alt='Pliers']")));
+        plier.click ();
+    }
+
     public LoginPage navigateToLoginPage () {
         signInLink ().click ();
         return new LoginPage (driver);
