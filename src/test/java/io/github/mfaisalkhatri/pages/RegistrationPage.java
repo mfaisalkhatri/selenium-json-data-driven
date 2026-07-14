@@ -125,5 +125,4 @@ public class RegistrationPage {
     private WebElement footerField () {
         return this.driver.findElement (By.cssSelector ("app-footer p"));
     }
-
 }
