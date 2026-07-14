@@ -34,9 +34,10 @@ jobs:
       - name: Start Practice Software Testing with Docker Compose
         run: docker compose -f docker-compose-toolshop.yml up -d
 
-      - name: Sleep for 60 seconds
-        run: sleep 60s
+      - name: Sleep for 30 seconds
+        run: sleep 30s
         shell: bash
+
       - name: Wait for MariaDB
         run: |
           until docker compose -f docker-compose-toolshop.yml exec -T mariadb \
@@ -48,12 +49,20 @@ jobs:
       - name: Create and Seed Database
         run: |
           docker compose -f docker-compose-toolshop.yml exec laravel-api php artisan migrate:fresh --seed
-      - name: Wait for application
+      - name: Wait for Angular UI to be ready 🕐
         run: |
-          until curl -f http://localhost:4200; do
-            echo "Waiting for application..."
+          echo "Waiting for Angular UI on port 4200..."
+          for i in $(seq 1 60); do
+            if curl -s -o /dev/null -w "%{http_code}" http://localhost:4200 | grep -q "200"; then
+              echo "Angular UI is ready!"
+              exit 0
+            fi
+            echo "Attempt $i/60 - not ready yet, waiting 5s..."
             sleep 5
           done
+          echo "Angular UI failed to start within 5 minutes"
+          docker compose logs angular-ui
+          exit 1
 
       - name: Build Project and run tests
         run: mvn clean install
