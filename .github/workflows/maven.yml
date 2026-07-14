@@ -34,6 +34,9 @@ jobs:
       - name: Start Practice Software Testing with Docker Compose
         run: docker compose -f docker-compose-toolshop.yml up -d
 
+      - name: Sleep for 60 seconds
+        run: sleep 60s
+        shell: bash
       - name: Wait for MariaDB
         run: |
           until docker compose -f docker-compose-toolshop.yml exec -T mariadb \
