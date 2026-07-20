@@ -31,24 +31,38 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Checkout Practice Software Testing repo
-        uses: actions/checkout@v7
-        with:
-          repository: testsmith-io/practice-software-testing
-          path: practice-repo
-
       - name: Start Practice Software Testing with Docker Compose
-        working-directory: practice-repo
-        run: docker compose -f docker-compose.yml up -d
+        run: docker compose -f docker-compose-toolshop.yml up -d
 
-      - name: Sleep for 60 seconds
-        run: sleep 60s
+      - name: Sleep for 30 seconds
+        run: sleep 30s
         shell: bash
 
-      - name: Create and Seed Database
-        working-directory: practice-repo
+      - name: Wait for MariaDB
         run: |
-          docker compose exec laravel-api php artisan migrate:fresh --seed
+          until docker compose -f docker-compose-toolshop.yml exec -T mariadb \
+            mysqladmin ping -h localhost -uroot -proot --silent; do
+            echo "Waiting for MariaDB..."
+            sleep 5
+          done
+
+      - name: Create and Seed Database
+        run: |
+          docker compose -f docker-compose-toolshop.yml exec laravel-api php artisan migrate:fresh --seed
+      - name: Wait for Angular UI to be ready 🕐
+        run: |
+          echo "Waiting for Angular UI on port 4200..."
+          for i in $(seq 1 60); do
+            if curl -s -o /dev/null -w "%{http_code}" http://localhost:4200 | grep -q "200"; then
+              echo "Angular UI is ready!"
+              exit 0
+            fi
+            echo "Attempt $i/60 - not ready yet, waiting 5s..."
+            sleep 5
+          done
+          echo "Angular UI failed to start within 5 minutes"
+          docker compose logs angular-ui
+          exit 1
 
       - name: Build Project and run tests
         run: mvn clean install

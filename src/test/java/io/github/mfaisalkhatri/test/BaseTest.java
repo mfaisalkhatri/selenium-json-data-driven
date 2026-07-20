@@ -3,6 +3,7 @@ package io.github.mfaisalkhatri.test;
 import java.time.Duration;
 
 import io.github.mfaisalkhatri.utils.WebDriverProvider;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -22,11 +23,8 @@ public class BaseTest implements WebDriverProvider {
     public void setup () {
         ChromeOptions chromeOptions = new ChromeOptions ();
         chromeOptions.addArguments ("--headless=new", "--no-sandbox", "--window-size=1920,1080");
-
+        chromeOptions.setPageLoadStrategy (PageLoadStrategy.NORMAL);
         this.driver = new ChromeDriver (chromeOptions);
-        this.driver.manage ()
-            .timeouts ()
-            .implicitlyWait (Duration.ofSeconds (30));
     }
 
     @AfterClass
