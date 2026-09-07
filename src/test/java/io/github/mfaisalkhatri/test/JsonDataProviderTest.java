@@ -48,9 +48,10 @@ public class JsonDataProviderTest extends BaseTest {
         assertEquals (registrationPage.pageHeader (), "Customer registration");
 
         registrationPage.fillRegistrationForm (registrationData);
-        //        assertEquals (registrationPage.passwordAlertMessage (),
-        //            "The given password has appeared in a data leak. Please choose a different password.");
+                assertEquals (registrationPage.passwordAlertMessage (),
+                    "The given password has appeared in a data leak. Please choose a different password.");
 
-        assertEquals (loginPage.pageHeading (), "Login");
+        //assertEquals (loginPage.pageHeading (), "Login");
+
     }
 }
