@@ -22,8 +22,7 @@ public class BaseTest implements WebDriverProvider {
     @BeforeClass
     public void setup () {
         ChromeOptions chromeOptions = new ChromeOptions ();
-        //chromeOptions.addArguments ("--headless=new", "--no-sandbox", "--window-size=1920,1080");
-        chromeOptions.addArguments ("--no-sandbox", "--window-size=1920,1080");
+        chromeOptions.addArguments ("--headless=new", "--no-sandbox", "--window-size=1920,1080");
         chromeOptions.setPageLoadStrategy (PageLoadStrategy.NORMAL);
         this.driver = new ChromeDriver (chromeOptions);
     }
