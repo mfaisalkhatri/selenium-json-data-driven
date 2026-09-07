@@ -12,7 +12,7 @@
       "country": "Benin",
       "phone": "01137547",
       "emailAddress": "jason.l@testing.com",
-      "password": "Password@123",
+      "password": "Claude@1234$",
       "isValid": true
     },
     {
@@ -27,7 +27,7 @@
       "country": "American Samoa",
       "phone": "04556788",
       "emailAddress": "michael.j@testing.com",
-      "password": "Password@123",
+      "password": "Claude@1234$",
       "isValid": true
     },
     {
@@ -42,7 +42,7 @@
       "country": "Austria",
       "phone": "0483678",
       "emailAddress": "abraham.l@testing.com",
-      "password": "Password@123",
+      "password": "Claude@1234$",
       "isValid": false
     }
   ]

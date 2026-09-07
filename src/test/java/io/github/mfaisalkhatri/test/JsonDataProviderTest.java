@@ -33,14 +33,14 @@ public class JsonDataProviderTest extends BaseTest {
     }
 
     @Test (dataProvider = "getValidRegistrationData")
-    public void testRegistrationPasswordAlert (final RegistrationData registrationData) {
+    public void testRegisterUser (final RegistrationData registrationData) {
         this.driver.get ("http://localhost:4200/");
 
         // this.driver.get ("https://practicesoftwaretesting.com/auth/register");
         takeScreenShot (driver);
 
         HomePage homePage = new HomePage (driver);
-        homePage.checkPlierProduct ();
+        //homePage.checkPlierProduct ();
         takeScreenShot (driver);
         LoginPage loginPage = homePage.navigateToLoginPage ();
         RegistrationPage registrationPage = loginPage.navigateToRegistrationPage ();
@@ -48,7 +48,9 @@ public class JsonDataProviderTest extends BaseTest {
         assertEquals (registrationPage.pageHeader (), "Customer registration");
 
         registrationPage.fillRegistrationForm (registrationData);
-        assertEquals (registrationPage.passwordAlertMessage (),
-            "The given password has appeared in a data leak. Please choose a different password.");
+        //        assertEquals (registrationPage.passwordAlertMessage (),
+        //            "The given password has appeared in a data leak. Please choose a different password.");
+
+        assertEquals (loginPage.pageHeading (), "Login");
     }
 }

@@ -27,4 +27,8 @@ public class LoginPage {
         registerYourAccountLink ().click ();
         return new RegistrationPage (driver);
     }
+
+    public String pageHeading() {
+        return this.wait.until (ExpectedConditions.visibilityOfElementLocated (By.cssSelector ("app-login h3"))).getText ();
+    }
 }
