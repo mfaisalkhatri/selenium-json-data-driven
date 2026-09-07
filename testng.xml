@@ -8,7 +8,7 @@
         <classes>
             <class name="io.github.mfaisalkhatri.test.JsonDataProviderTest">
                 <methods>
-                    <include name="testRegistrationPasswordAlert"/>
+                    <include name="testRegisterUser"/>
                 </methods>
             </class>
         </classes>
